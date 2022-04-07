@@ -1,0 +1,6 @@
+[submodule "deploy/sort"]
+	path = deploy/sort
+	url = https://github.com/ninfueng/sort
+[submodule "Hungarian-Algorithm-in-C-Language"]
+	path = Hungarian-Algorithm-in-C-Language
+	url = https://github.com/ninfueng/Hungarian-Algorithm-in-C-Language
