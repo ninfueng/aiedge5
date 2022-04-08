@@ -9,10 +9,9 @@ from pynq_dpu import DpuOverlay
 from utils import post_process, non_max_suppression_np
 
 if __name__ == "__main__":
-    conf_thres = 0.8
-    nms_thres = 0.4
-    num_anchors = 3
-    num_classes = 2
+    CONF_THRES = 0.8
+    NMS_THRES = 0.4
+    NUM_CLASSES = 2
     np.random.seed(0)
 
     overlay = DpuOverlay("./dpu/dpu.bit")
@@ -77,7 +76,7 @@ if __name__ == "__main__":
 
             det = np.concatenate((det0, det1), axis=1)
             detections = non_max_suppression_np(
-                det, num_classes, conf_thres, nms_thres
+                det, NUM_CLASSES, CONF_THRES, NMS_THRES
             )[0]
             detection_list.append(detections)
     np.save("detection_list.npy", detection_list, allow_pickle=True)
