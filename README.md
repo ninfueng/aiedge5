@@ -54,7 +54,7 @@ Note if you have more than one GPU, you can added `--gpus` to use multi-gpus. Fo
 
 ## Compile with Vitis AI
 
-Please follow the [Vitis AI][7] repository to build the Vitis-AI docker image with GPU support.
+Please follow the [Vitis AI][7] getting started guide to build the Vitis-AI docker image with GPU support.
 The scripts in `./vitis_ai_files` are used to convert the `yolov4-tiny` weights and configuration to `.xmodel`.
 Note that you may require to change the path of files in `./vitis_ai_files.` Please read `./vitis_ai_files/README.md` for more details in this Vitis AI step.
 
