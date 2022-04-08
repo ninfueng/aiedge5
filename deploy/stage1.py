@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
 import os
 import glob
 
@@ -14,10 +12,8 @@ if __name__ == "__main__":
     conf_thres = 0.8
     nms_thres = 0.4
     num_anchors = 3
-
+    num_classes = 2
     np.random.seed(0)
-    num2classes = {0: "Pedestrian", 1: "Car"}
-    num_classes = len(num2classes)
 
     overlay = DpuOverlay("./dpu/dpu.bit")
     overlay.load_model("./xmodel/yolov4_tiny_512.xmodel")
