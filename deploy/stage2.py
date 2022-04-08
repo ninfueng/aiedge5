@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-"""
-"""
 import numpy as np
 import os
 import json
@@ -60,7 +56,7 @@ if __name__ == "__main__":
             tracked_objects = mot_tracker.update(detections1)
             for x1, y1, x2, y2, obj_id in tracked_objects:
                 box_h = int(((y2 - y1) / IMG_SIZE) * IMG_HEIGHT)
-                box_w = int(((x2 - x1) / img_size) * o_frame.shape[1])
+                box_w = int(((x2 - x1) / IMG_SIZE) * IMG_WIDTH)
                 x1 = int((x1 / IMG_SIZE) * IMG_WIDTH)
                 y1 = int((y1 / IMG_SIZE) * IMG_HEIGHT)
                 x2 = int((x2 / IMG_SIZE) * IMG_WIDTH)
