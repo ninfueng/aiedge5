@@ -1,6 +1,6 @@
 [submodule "deploy/sort"]
 	path = deploy/sort
-    url = git@github.com:ninfueng/sort.git
+    url = https://github.com/ninfueng/sort.git
 [submodule "Hungarian-Algorithm-in-C-Language"]
 	path = Hungarian-Algorithm-in-C-Language
-	url = git@github.com:ninfueng/Hungarian-Algorithm-in-C-Language.git
+	url = https://github.com/ninfueng/Hungarian-Algorithm-in-C-Language.git
