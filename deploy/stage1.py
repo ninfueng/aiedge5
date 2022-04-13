@@ -12,8 +12,8 @@ if __name__ == "__main__":
     CONF_THRES = 0.8
     NMS_THRES = 0.4
     NUM_CLASSES = 2
-    np.random.seed(0)
 
+    np.random.seed(0)
     overlay = DpuOverlay("./dpu/dpu.bit")
     overlay.load_model("./xmodel/yolov4_tiny_512.xmodel")
     dpu = overlay.runner

@@ -1,68 +1,6 @@
-import signal
-
 import numpy as np
-from pynq import Overlay
-from typing import List
-
-from isa import lui, load_instructs
 
 sigmoid = lambda x: 1 / (1 + np.exp(-x))
-
-
-class AttrDict(dict):
-    def __init__(self, *args, **kwargs):
-        super(AttrDict, self).__init__(*args, **kwargs)
-        self.__dict__ = self
-
-
-def timeout_handler(signum, frame) -> None:
-    raise TimeoutError(f"Timeout, SIGNUM: {signum}, frame: {frame}")
-
-
-signal.signal(signal.SIGALRM, timeout_handler)
-
-
-def run_riscv(
-    vars_: List[int],
-    bitdir: str = "./bitstream/riscv.bit",
-    instruct_dir: str = "main.hex",
-    timeout: int = 5,
-):
-    """Instantate and run riscv core given ISAs in the hex format."""
-    signal.alarm(timeout)
-    # Initialize stack pointer to some place. Avoid stack overflow problems.
-    start_sp = lui(2, 0xA0030000)
-    instructs = load_instructs(instruct_dir)
-    instructs.insert(0, start_sp)
-
-    try:
-        overlay = Overlay(bitdir)
-        imem = overlay.IMEM_CONTROL
-        dmem = overlay.DMEM_CONTROL
-        gpio = overlay.axi_gpio_0
-
-        for idx, i in enumerate(instructs):
-            imem.write(idx * 4, i)
-        for idx, v in enumerate(vars_):
-            dmem.write(idx * 4, v)
-        gpio.write(0x00, 1)
-        gpio.write(0x00, 0)
-        hw_flag = True
-
-    except TimeoutError:
-        print(
-            f"TIMEOUT! Run RISCV assembly longer than {timeout} seconds,"
-            "using the ARM instead."
-        )
-        hw_flag = False
-
-    signal.alarm(0)
-    results = ()
-    if hw_flag:
-        x = (dmem.read(4 * 7), dmem.read(4 * 9))
-        y = (dmem.read(4 * 8), dmem.read(4 * 10))
-        results = (x, y)
-    return hw_flag, results
 
 
 def bbox_iou_np(box1, box2):
