@@ -4,7 +4,7 @@
 
 This repository contains my submission to [SIGNATE 5th AI Edge contest][1]. This submission uses a `yolov4-tiny` implementation from [AlexeyAB darknet][2] with [SORT][12] tracking algorithm. After training with `yolov4-tiny` using the AI Edge 5 dataset, The model is further processed based on the steps from [Yolov4 Vitis AI Tutorial][3]. With [keras-YOLOv3-model-set][11], `yolov4-tiny` configuration and weights are converted to Keras `.h5` and from `.h5` to TensorFlow `.pb`. The `.pb` model was processed further to `.xmodel` with Vitis AI workflow. [DPU-PYNQ][10] was used to control yolov4-tiny `.xmodel` in Xilinx Ultra96v2 board. After the inference, the `yolov4-tiny` bounding boxes were tracked using SORT algorithm.
 
-SORT consists of two main algorithms: the Kalman filter and Hungarian algorithm. In this case, SIGNATE RISC-V][4] was chosen as a soft RISC-V core to perform the computation for Hungarian algorithm. SIGNATE RISC-V is based on [VexRiscv][5] RV32IM. This core was used with RISC-V assembly to perform computation. To communicate between SIGNATE RISC-V core and Python programming language, the RISC-V core was controlled using [PYNQ][9].
+SORT consists of two main algorithms: the Kalman filter and Hungarian algorithm. In this case, [SIGNATE RISC-V][4] was chosen as a soft RISC-V core to perform the computation for Hungarian algorithm. SIGNATE RISC-V is based on [VexRiscv][5] RV32IM. This core was used with RISC-V assembly to perform computation. To communicate between SIGNATE RISC-V core and Python programming language, the RISC-V core was controlled using [PYNQ][9].
 
 For more information, please look at `./reports/report.md` or `./reports/report.pdf`.
 
